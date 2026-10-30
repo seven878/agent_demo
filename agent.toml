@@ -1,0 +1,21 @@
+# 复制为 agent.toml 后按需修改（放在你运行 agent 的目录，或 agent.py 旁边）
+[model]
+name = "deepseek-flash"
+base_url = "https://api.deepseek.com"
+api_key_env = "DEEPSEEK_API_KEY"                    # 设置此环境变量；不要把 key 写进文件
+stream = true                                     # 流式输出；若某模型卡住可改 false 试试
+timeout = 120
+retries = 3
+
+[agent]
+max_steps = 25
+command_timeout = 60
+output_limit = 4000
+max_context_chars = 120000
+
+[github]
+enabled = true
+remote = "origin"
+token_env = "GITHUB_TOKEN"   # GitHub token 需有 Pull requests: write 权限
+stack = true                # true: 每个 PR 指向上一个任务分支；false: 都指向 base_branch
+base_branch = ""
